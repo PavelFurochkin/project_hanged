@@ -80,6 +80,7 @@ def contained_picture(number: int) -> None:
 #
 # letsplay()
 def start_game_menu() -> None:
+    """Предлагает начать игру или выйти"""
     while True:
         print('Хотите начать новую игру(n) или выйти(q)? \nВведите n|q ...')
         letter: str = str(input())
@@ -90,12 +91,14 @@ def start_game_menu() -> None:
 
 
 def start_new_game() -> None:
+    '''Содержит методы выбора слова и проверки ввода'''
     pick_random_word()
     print(convert_word)
     letter_guess_loop()
 
 
 def pick_random_word() -> None:
+    '''Выбирает случайное слово из файла'''
     with open('words.txt', 'r', encoding='utf-8') as file:
         global convert_word
         global word_mask
@@ -107,6 +110,7 @@ def pick_random_word() -> None:
 
 
 def letter_guess_loop() -> None:
+    '''Проверяем наличие введенной буквы в слове'''
     global input_letter
     while word_mask != convert_word and count_mistake != 6:
         print('Введи букву')
@@ -119,6 +123,7 @@ def letter_guess_loop() -> None:
 
 
 def correct_answer() -> None:
+    '''Сценарий при совпадении буквы'''
     global word_mask
     count_position = -1  # Счетчик для отслеживания позиции буквы в слове
     for l in convert_word:
@@ -133,6 +138,7 @@ def correct_answer() -> None:
 
 
 def wrong_answer() -> None:
+    '''Сценарий при ошибочной букве'''
     global count_mistake
     print('Нет такой буквы')
     if (input_letter == '') or (input_letter in wrong_word_set):
@@ -148,6 +154,7 @@ def wrong_answer() -> None:
 
 
 def results_game() -> None:
+    '''Выводит итоговый результат игры'''
     global word
     global choise_word
     global count_mistake
