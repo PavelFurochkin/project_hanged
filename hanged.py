@@ -10,7 +10,7 @@ wrong_word_set: set = set()  # Список букв, которые отсут�
 input_letter: str = str()  # Угадываемая буква
 
 
-def contained_picture(number: int):
+def contained_picture(number: int) -> None:
     """Помещаем файлы в словарь и отрисовываем картинку."""
 
     picture = open(f'{number}.txt', 'r', encoding='utf-8')
@@ -79,7 +79,7 @@ def contained_picture(number: int):
 #
 #
 # letsplay()
-def start_game_menu():
+def start_game_menu() -> None:
     while True:
         print('Хотите начать новую игру(n) или выйти(q)? \nВведите n|q ...')
         letter: str = str(input())
@@ -89,13 +89,13 @@ def start_game_menu():
             sys.exit('До новых встреч')
 
 
-def start_new_game():
+def start_new_game() -> None:
     pick_random_word()
     print(convert_word)
     letter_guess_loop()
 
 
-def pick_random_word():
+def pick_random_word() -> None:
     with open('words.txt', 'r', encoding='utf-8') as file:
         global convert_word
         global word_mask
@@ -106,7 +106,7 @@ def pick_random_word():
     word_mask = ['_' for _ in range(0, len(choise_word))]
 
 
-def letter_guess_loop():
+def letter_guess_loop() -> None:
     global input_letter
     while word_mask != convert_word and count_mistake != 6:
         print('Введи букву')
@@ -118,7 +118,7 @@ def letter_guess_loop():
     results_game()
 
 
-def correct_answer():
+def correct_answer() -> None:
     global word_mask
     count_position = -1  # Счетчик для отслеживания позиции буквы в слове
     for l in convert_word:
@@ -147,7 +147,7 @@ def wrong_answer() -> None:
         contained_picture(count_mistake)
 
 
-def results_game():
+def results_game() -> None:
     global word
     global choise_word
     global count_mistake
